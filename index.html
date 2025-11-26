@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bihari Rasoi - Ghar Jaisa Swaad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #d32f2f; /* Deep Red */
+            --secondary-color: #fbc02d; /* Mustard Yellow */
+            --accent-color: #388e3c; /* Veg Green */
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #fffaf0; /* Cream background */
+            --shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cta-btn-nav {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-family: 'Great Vibes', cursive;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .order-btn {
+            background-color: #25D366; /* WhatsApp Green */
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInUp 1s ease 1s forwards;
+            opacity: 0;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 10px auto;
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .card-header h3 { font-size: 1.5rem; }
+        .card-header span { font-size: 0.9rem; opacity: 0.9; }
+
+        .card-body { padding: 1.5rem; }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Weekly Dinner Table */
+        .dinner-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .dinner-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .day-name { font-weight: 600; color: var(--primary-color); }
+
+        /* --- SUBSCRIPTION --- */
+        .subscription {
+            background-color: #fff3e0;
+            text-align: center;
+        }
+
+        .sub-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .sub-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-color);
+            width: 300px;
+        }
+
+        .sub-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        /* --- OWNER & CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .owner-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .owner-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #eee;
+            margin-bottom: 1rem;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .contact-details i {
+            color: var(--primary-color);
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 2rem 5% 1rem 5%;
+            text-align: center;
+        }
+
+        .dev-credit {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        .dev-credit a {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2.5rem; }
+            
+            .menu-toggle { display: block; }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            nav ul.active { display: flex; }
+            
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Bihari Rasoi</h1>
+            <span>Ghar jaisa swaad, Maa jaisi care</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#subscription">Plans</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://wa.me/917979019306" class="cta-btn-nav">Order Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to Bihari Rasoi</h2>
+            <p>"Ghar jaisa swaad, Maa jaisi care"</p>
+            <a href="https://wa.me/917979019306" class="order-btn">
+                <i class="fab fa-whatsapp"></i> Order Tiffin Now
+            </a>
+        </div>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title">Our Delicious Menu</h2>
+        <div class="menu-container">
+            
+            <div class="menu-card">
+                <div class="card-header">
+                    <h3>Breakfast</h3>
+                    <span>8:00 AM – 11:00 AM</span>
+                </div>
+                <div class="card-body">
+                    <div class="menu-item"><span>Aloo Paratha</span><span class="price">₹15</span></div>
+                    <div class="menu-item"><span>Gobi Paratha</span><span class="price">₹15</span></div>
+                    <div class="menu-item"><span>Onion Paratha</span><span class="price">₹15</span></div>
+                    <div class="menu-item"><span>Paneer Paratha</span><span class="price">₹20</span></div>
+                    <div class="menu-item"><span>Plain Paratha</span><span class="price">₹10</span></div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-header">
+                    <h3>Lunch Thali</h3>
+                    <span>12:00 PM – 2:00 PM</span>
+                </div>
+                <div class="card-body">
+                    <div class="menu-item" style="border:none; justify-content:center;">
+                        <h2 class="price" style="font-size:2rem;">₹65/-</h2>
+                    </div>
+                    <ul style="list-style: circle; padding-left: 20px;">
+                        <li>Dal</li>
+                        <li>Chawal (Rice)</li>
+                        <li>Sabji</li>
+                        <li>Bhujiya</li>
+                        <li>Salad & Papad</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="card-header">
+                    <h3>Dinner Specials</h3>
+                    <span>Daily Rotation</span>
+                </div>
+                <div class="card-body">
+                    <table class="dinner-table">
+                        <tr><td class="day-name">Mon</td><td>Roti, Paneer, Salad</td><td class="price">₹65</td></tr>
+                        <tr><td class="day-name">Tue</td><td>Kheer, Puri, Sabji</td><td class="price">₹65</td></tr>
+                        <tr><td class="day-name">Wed</td><td>Fish, Rice, Salad</td><td class="price">₹75</td></tr>
+                        <tr><td class="day-name">Thu</td><td>Aloo Paratha, Achar</td><td class="price">₹65</td></tr>
+                        <tr><td class="day-name">Fri</td><td>Egg Curry, Rice</td><td class="price">₹75</td></tr>
+                        <tr><td class="day-name">Sat</td><td>Sattu Paratha, Chhola</td><td class="price">₹65</td></tr>
+                        <tr><td class="day-name">Sun</td><td>Chicken, Rice</td><td class="price">₹75</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="subscription" class="subscription">
+        <h2 class="section-title">Monthly Subscription Plans</h2>
+        <div class="sub-cards">
+            <div class="sub-card">
+                <h3>Lunch Only</h3>
+                <div class="sub-price">₹1800<span style="font-size:1rem; color:#666">/mo</span></div>
+                <p>Enjoy our standard lunch thali every day for a month.</p>
+                <br>
+                <a href="https://wa.me/917979019306?text=I%20want%20to%20subscribe%20for%20Lunch%20Plan" class="cta-btn-nav">Subscribe</a>
+            </div>
+            <div class="sub-card">
+                <h3>Lunch + Dinner</h3>
+                <div class="sub-price">₹3400<span style="font-size:1rem; color:#666">/mo</span></div>
+                <p style="color:var(--primary-color); font-weight:bold;">Best Value!</p>
+                <p>Complete food solution. Ghar jaisa swaad, twice a day.</p>
+                <br>
+                <a href="https://wa.me/917979019306?text=I%20want%20to%20subscribe%20for%20Lunch%20and%20Dinner%20Combo" class="cta-btn-nav">Subscribe</a>
+            </div>
+            <div class="sub-card">
+                <h3>Dinner Only</h3>
+                <div class="sub-price">₹1800<span style="font-size:1rem; color:#666">/mo</span></div>
+                <p>Delicious dinner specials delivered to your door.</p>
+                <br>
+                <a href="https://wa.me/917979019306?text=I%20want%20to%20subscribe%20for%20Dinner%20Plan" class="cta-btn-nav">Subscribe</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-grid">
+            
+            <div class="owner-info">
+                <img src="https://cdn-icons-png.flaticon.com/512/6889/6889344.png" alt="Owner">
+                <h3>Ekta Kumari</h3>
+                <p style="color:var(--secondary-color); font-weight:600;">Owner, Bihari Rasoi</p>
+                <p style="margin-top:10px;">"We ensure hygiene and taste in every tiffin box we pack."</p>
+            </div>
+
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Bolaidih Road No. 9, Gamharia, Jamshedpur<br><span style="font-size:0.9rem; color:#666">Near Puja Ice Cream Factory</span></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+917979019306">+91 79790 19306</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:ektakumari2090@gmail.com">ektakumari2090@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/917979019306" style="color:#25D366; font-weight:bold;">Chat on WhatsApp</a>
+                </div>
+                <div style="margin-top:20px;">
+                    <p style="font-size:0.9rem; color:#d32f2f;"><strong>Free Delivery Available:</strong> Lunch 12 PM - 2 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>Bihari Rasoi</h3>
+        <p>Ghar jaisa swaad, Maa jaisi care</p>
+        <br>
+        <p>&copy; 2024 Bihari Rasoi. All Rights Reserved.</p>
+        
+        <div class="dev-credit">
+            <p>Developed with <i class="fas fa-heart" style="color:red"></i> by <a href="https://share.google/GuxLpvnq0210W7Huo" target="_blank">Pratham Kumar</a></p>
+            <p><small>Contact Developer for your own website</small></p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('nav-list');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', () => {
+                document.getElementById('nav-list').classList.remove('active');
+            });
+        });
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal Animations on Scroll
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.menu-card, .sub-card, .owner-info');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].style.opacity = "1";
+                    reveals[i].style.transform = "translateY(0)";
+                }
+            }
+        }
+        
+        // Initialize reveal styles
+        document.querySelectorAll('.menu-card, .sub-card, .owner-info').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(50px)";
+            el.style.transition = "all 0.6s ease-out";
+        });
+        
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
