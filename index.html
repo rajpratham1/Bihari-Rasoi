@@ -32,7 +32,7 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        /* --- 2. PRELOADER (Loading Animation) --- */
+        /* --- 2. PRELOADER --- */
         #preloader {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--light); z-index: 9999;
@@ -85,7 +85,7 @@
                               url('https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Desktop Parallax */
+            background-attachment: fixed; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,7 +176,7 @@
         .review-card { background: var(--white); padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .stars { color: #FFD700; margin-bottom: 10px; }
 
-        /* Form Styling */
+        /* Form & Star Selector Styling */
         .review-form-container {
             max-width: 600px; margin: 50px auto 0; text-align: center;
             background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);
@@ -185,6 +185,13 @@
             width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;
             margin-bottom: 15px; font-family: 'Poppins', sans-serif;
         }
+        
+        /* New Star Selector CSS */
+        .star-selector {
+            font-size: 1.8rem; color: #ddd; margin-bottom: 15px; cursor: pointer;
+        }
+        .star-selector i { transition: color 0.2s; margin: 0 5px; }
+        .star-selector i.active, .star-selector i:hover { color: #FFD700; }
 
         /* --- 9. FOOTER --- */
         footer { background: #1a1a1a; color: #bbb; padding: 3rem 5% 1rem; text-align: center; }
@@ -214,14 +221,10 @@
                 background: var(--primary); text-align: center; padding: 20px 0;
             }
             nav ul.active { display: flex; }
-            
-            /* Fix Parallax on Mobile */
             .hero { background-attachment: scroll; } 
-            
             .hero-content h2 { font-size: 2.2rem; }
             .typewriter { font-size: 1.5rem; }
             .badge-float { width: 80px; height: 80px; bottom: 5%; right: 5%; }
-            
             .about-wrapper { flex-direction: column-reverse; }
         }
     </style>
@@ -314,10 +317,7 @@
 
         <div class="menu-grid">
             <div class="card">
-                <div class="card-head">
-                    <h3>Breakfast</h3>
-                    <p>8:00 AM – 11:00 AM</p>
-                </div>
+                <div class="card-head"><h3>Breakfast</h3><p>8:00 AM – 11:00 AM</p></div>
                 <div class="card-body">
                     <div class="item"><span>Aloo Paratha</span><span class="price">₹15</span></div>
                     <div class="item"><span>Gobi Paratha</span><span class="price">₹15</span></div>
@@ -328,34 +328,24 @@
             </div>
 
             <div class="card">
-                <div class="card-head">
-                    <h3>Lunch Thali</h3>
-                    <p>12:00 PM – 2:00 PM</p>
-                </div>
+                <div class="card-head"><h3>Lunch Thali</h3><p>12:00 PM – 2:00 PM</p></div>
                 <div class="card-body" style="text-align:center">
                     <h2 class="price" style="font-size:2.5rem; margin-bottom:10px;">₹65</h2>
-                    <p style="color:#666; line-height:1.8;">
-                        Dal • Chawal (Rice)<br>
-                        Seasonal Sabji • Bhujiya<br>
-                        Salad • Papad
-                    </p>
+                    <p style="color:#666; line-height:1.8;">Dal • Chawal (Rice)<br>Seasonal Sabji • Bhujiya<br>Salad • Papad</p>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-head">
-                    <h3>Dinner Schedule</h3>
-                    <p>Daily Changing Menu</p>
-                </div>
+                <div class="card-head"><h3>Dinner Schedule</h3><p>Daily Changing Menu</p></div>
                 <div class="card-body">
                     <table>
-                        <tr class="item"> <td class="day">Mon</td> <td>Roti, Paneer, Salad</td> <td class="price">₹65</td> </tr>
-                        <tr class="item"> <td class="day">Tue</td> <td>Kheer, Puri, Sabji</td> <td class="price">₹65</td> </tr>
-                        <tr class="item"> <td class="day">Wed</td> <td>Fish, Rice, Salad</td> <td class="price">₹75</td> </tr>
-                        <tr class="item"> <td class="day">Thu</td> <td>Aloo Paratha, Achar</td> <td class="price">₹65</td> </tr>
-                        <tr class="item"> <td class="day">Fri</td> <td>Egg Curry, Rice</td> <td class="price">₹75</td> </tr>
-                        <tr class="item"> <td class="day">Sat</td> <td>Sattu Paratha, Chhola</td> <td class="price">₹65</td> </tr>
-                        <tr class="item"> <td class="day">Sun</td> <td>Chicken, Rice</td> <td class="price">₹75</td> </tr>
+                        <tr class="item"><td class="day">Mon</td><td>Roti, Paneer, Salad</td><td class="price">₹65</td></tr>
+                        <tr class="item"><td class="day">Tue</td><td>Kheer, Puri, Sabji</td><td class="price">₹65</td></tr>
+                        <tr class="item"><td class="day">Wed</td><td>Fish, Rice, Salad</td><td class="price">₹75</td></tr>
+                        <tr class="item"><td class="day">Thu</td><td>Aloo Paratha, Achar</td><td class="price">₹65</td></tr>
+                        <tr class="item"><td class="day">Fri</td><td>Egg Curry, Rice</td><td class="price">₹75</td></tr>
+                        <tr class="item"><td class="day">Sat</td><td>Sattu Paratha, Chhola</td><td class="price">₹65</td></tr>
+                        <tr class="item"><td class="day">Sun</td><td>Chicken, Rice</td><td class="price">₹75</td></tr>
                     </table>
                 </div>
             </div>
@@ -369,25 +359,16 @@
         </div>
         <div class="plans-container">
             <div class="plan-card">
-                <h3>Lunch Only</h3>
-                <div class="plan-price">₹1800</div>
-                <p>/ Month</p>
-                <br>
+                <h3>Lunch Only</h3><div class="plan-price">₹1800</div><p>/ Month</p><br>
                 <a href="https://wa.me/917979019306?text=Subscribe%20Lunch" class="hero-btn" style="font-size:0.9rem;">Choose Plan</a>
             </div>
             <div class="plan-card" style="border-top-color: var(--primary); transform: scale(1.05);">
                 <div style="background:var(--primary); color:white; position:absolute; top:0; right:0; padding:5px 15px; border-radius:0 20px 0 20px; font-size:0.8rem;">BEST VALUE</div>
-                <h3>Combo (Lunch+Dinner)</h3>
-                <div class="plan-price">₹3400</div>
-                <p>/ Month</p>
-                <br>
+                <h3>Combo (Lunch+Dinner)</h3><div class="plan-price">₹3400</div><p>/ Month</p><br>
                 <a href="https://wa.me/917979019306?text=Subscribe%20Combo" class="hero-btn" style="font-size:0.9rem;">Choose Plan</a>
             </div>
             <div class="plan-card">
-                <h3>Dinner Only</h3>
-                <div class="plan-price">₹1800</div>
-                <p>/ Month</p>
-                <br>
+                <h3>Dinner Only</h3><div class="plan-price">₹1800</div><p>/ Month</p><br>
                 <a href="https://wa.me/917979019306?text=Subscribe%20Dinner" class="hero-btn" style="font-size:0.9rem;">Choose Plan</a>
             </div>
         </div>
@@ -401,26 +382,27 @@
         <div class="review-grid" id="reviewGrid">
             <div class="review-card">
                 <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"Best Sattu Paratha in Gamharia! Reminds me of home."</p>
-                <br><strong>- Raj Kumar</strong>
+                <p>"Best Sattu Paratha in Gamharia! Reminds me of home."</p><br><strong>- Raj Kumar</strong>
             </div>
             <div class="review-card">
                 <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                <p>"Very punctual delivery and hygienic packaging. The chicken curry on Sunday is amazing."</p>
-                <br><strong>- Priya Singh</strong>
-            </div>
-            <div class="review-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>"Ekta Ji is very polite and the food quality is consistent."</p>
-                <br><strong>- Amritansh Verma</strong>
+                <p>"Very punctual delivery. The chicken curry on Sunday is amazing."</p><br><strong>- Priya Singh</strong>
             </div>
         </div>
         
         <div class="review-form-container">
             <h3>Leave a Review</h3>
-            <p style="font-size:0.9rem; color:#666; margin-bottom:15px;">Your review will appear here instantly!</p>
+            <p style="font-size:0.9rem; color:#666; margin-bottom:15px;">Click stars to rate & send!</p>
             
             <form id="reviewForm">
+                <div class="star-selector" id="starSelector">
+                    <i class="fas fa-star" data-value="1"></i>
+                    <i class="fas fa-star" data-value="2"></i>
+                    <i class="fas fa-star" data-value="3"></i>
+                    <i class="fas fa-star" data-value="4"></i>
+                    <i class="fas fa-star active" data-value="5"></i> </div>
+                <input type="hidden" id="ratingValue" value="5">
+                
                 <input type="text" id="reviewName" class="review-input" placeholder="Your Name" required>
                 <textarea id="reviewText" class="review-input" placeholder="Write your feedback here..." style="height:100px;" required></textarea>
                 <button type="submit" class="hero-btn" style="border:none; width:100%;">Post Review</button>
@@ -447,70 +429,67 @@
     </a>
 
     <script>
-        // 1. Remove Preloader on Load
+        // 1. Remove Preloader
         window.addEventListener('load', function() {
             var preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
-            setTimeout(function() {
-                preloader.style.display = 'none';
-            }, 500);
-            
-            // Load saved reviews on refresh
+            setTimeout(function() { preloader.style.display = 'none'; }, 500);
             loadSavedReviews();
         });
 
-        // 2. Mobile Menu Toggle
-        function toggleMenu() {
-            const nav = document.getElementById('nav-list');
-            nav.classList.toggle('active');
-        }
+        // 2. Mobile Menu
+        function toggleMenu() { document.getElementById('nav-list').classList.toggle('active'); }
         document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav-list').classList.remove('active');
+            link.addEventListener('click', () => { document.getElementById('nav-list').classList.remove('active'); });
+        });
+
+        // 3. Search
+        function filterMenu() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            document.querySelectorAll('.item').forEach(item => {
+                let text = item.innerText || item.textContent;
+                item.style.display = text.toUpperCase().indexOf(input) > -1 ? "flex" : "none";
+                if(text.toUpperCase().indexOf(input) > -1) item.style.backgroundColor = "#fffde7";
+                if(input === "") { item.style.display = "flex"; item.style.backgroundColor = "transparent"; }
+            });
+        }
+
+        // 4. STAR RATING LOGIC
+        const stars = document.querySelectorAll('.star-selector i');
+        const ratingInput = document.getElementById('ratingValue');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = parseInt(star.getAttribute('data-value'));
+                ratingInput.value = value;
+                // Highlight stars up to selected
+                stars.forEach(s => {
+                    if(parseInt(s.getAttribute('data-value')) <= value) {
+                        s.classList.add('active');
+                        s.style.color = "#FFD700";
+                    } else {
+                        s.classList.remove('active');
+                        s.style.color = "#ddd";
+                    }
+                });
             });
         });
 
-        // 3. Search Functionality
-        function filterMenu() {
-            let input = document.getElementById('searchInput').value.toUpperCase();
-            let items = document.querySelectorAll('.item');
-            
-            items.forEach(item => {
-                let text = item.innerText || item.textContent;
-                if (text.toUpperCase().indexOf(input) > -1) {
-                    item.style.display = "flex";
-                    item.style.backgroundColor = "#fffde7";
-                } else {
-                    item.style.display = "none";
-                }
-                if(input === "") {
-                    item.style.display = "flex";
-                    item.style.backgroundColor = "transparent";
-                }
-            });
-        }
-
-        // 4. REVIEW SYSTEM (NO WHATSAPP - INSTANT DISPLAY)
+        // 5. REVIEW SYSTEM
         document.getElementById('reviewForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop page refresh
-
-            // Get values
+            e.preventDefault();
             const name = document.getElementById('reviewName').value;
             const text = document.getElementById('reviewText').value;
+            const rating = document.getElementById('ratingValue').value;
 
             if(name && text) {
-                // Create Review Object
-                const review = { name, text };
-
-                // Add to HTML
+                const review = { name, text, rating };
                 addReviewToGrid(review);
-
-                // Save to Local Storage (so it stays on refresh)
                 saveReview(review);
-
-                // Clear Form
                 document.getElementById('reviewForm').reset();
-                alert("Thank you! Your review is live.");
+                // Reset stars to 5
+                stars.forEach(s => s.classList.add('active'));
+                alert("Review Posted Successfully!");
             }
         });
 
@@ -518,12 +497,19 @@
             const grid = document.getElementById('reviewGrid');
             const card = document.createElement('div');
             card.className = 'review-card';
+            
+            // Generate Stars HTML based on rating
+            let starsHtml = '';
+            for(let i=0; i<5; i++) {
+                if(i < review.rating) starsHtml += '<i class="fas fa-star"></i>';
+                else starsHtml += '<i class="far fa-star" style="color:#ccc"></i>'; // Empty star
+            }
+
             card.innerHTML = `
-                <div class="stars" style="color:#FFD700"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="stars" style="color:#FFD700">${starsHtml}</div>
                 <p>"${review.text}"</p>
                 <br><strong>- ${review.name}</strong>
             `;
-            // Add new review to the TOP of the list
             grid.insertBefore(card, grid.firstChild);
         }
 
@@ -535,8 +521,6 @@
 
         function loadSavedReviews() {
             let reviews = JSON.parse(localStorage.getItem('bihariRasoiReviews')) || [];
-            // Add saved reviews to grid (reverse loop to show newest first if we pushed normally)
-            // But since we use insertBefore, we just loop normally.
             reviews.forEach(review => addReviewToGrid(review));
         }
     </script>
